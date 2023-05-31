@@ -29,15 +29,11 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.text.JTextComponent;
-import javax.swing.text.NumberFormatter;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 /**
@@ -58,8 +54,9 @@ public class Entradas extends javax.swing.JFrame {
     Locale region = Locale.getDefault();
     NumberFormat formato = NumberFormat.getCurrencyInstance(region);
     NumberFormat format = NumberFormat.getCurrencyInstance();
+    
     public List productos;
-    private List proveedores;
+    public List proveedores;
 
     SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -69,9 +66,6 @@ public class Entradas extends javax.swing.JFrame {
 
     public String medida = "";
 
-    /**
-     * Creates new form Ingresos
-     */
     public Entradas() {
         this.productos = TraerProductos();
         this.proveedores = TraerProveedores();
@@ -92,6 +86,7 @@ public class Entradas extends javax.swing.JFrame {
 
         CargarSugerenciasProds();
         CargarSugerenciasProvs();
+
         LLenarComboboxProds(productos);
         LLenarComboboxProvs(proveedores);
 
@@ -122,6 +117,7 @@ public class Entradas extends javax.swing.JFrame {
                 }
             }
         });
+       
 
     }
 
@@ -149,12 +145,14 @@ public class Entradas extends javax.swing.JFrame {
             tuLista = (ArrayList) proveedores.get(i);
             if (jComboBox_proveedor.getSelectedIndex() > 0) {
                 if (tuLista.get(1).toString().equals(jComboBox_proveedor.getSelectedItem().toString())) {
+                    System.out.println("AAA");
                     jTextField_codigoProveedor.setText((String) tuLista.get(0));
                 }
             }
             if (!jTextField_codigoProducto.equals("")) {
                 if (tuLista.get(0) == jTextField_codigoProducto.getText()) {
                     jComboBox_Producto.setSelectedItem((String) tuLista.get(1));
+                    System.out.println("BBB");
                 }
             }
         }
@@ -223,6 +221,7 @@ public class Entradas extends javax.swing.JFrame {
         }
     }
 
+  
     private void CargarSugerenciasProds() {
         AutoCompleteDecorator.decorate(jComboBox_Producto);
     }
@@ -230,6 +229,8 @@ public class Entradas extends javax.swing.JFrame {
     private void CargarSugerenciasProvs() {
         AutoCompleteDecorator.decorate(jComboBox_proveedor);
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -260,6 +261,7 @@ public class Entradas extends javax.swing.JFrame {
         txt_nombreProveedor = new javax.swing.JTextField();
         jLabel_WallpaperHeader4 = new javax.swing.JLabel();
         jLabel_Wallpaper4 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
         jTextField_precioVenta = new javax.swing.JTextField();
         jButton_cargarProducto = new javax.swing.JButton();
@@ -278,7 +280,6 @@ public class Entradas extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jTextField_codigoProducto = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         jButton_eliminar = new javax.swing.JButton();
         jButton_limpiar = new javax.swing.JButton();
         jButton_Historial = new javax.swing.JButton();
@@ -292,7 +293,10 @@ public class Entradas extends javax.swing.JFrame {
         jTextField_Reserva = new javax.swing.JTextField();
         jLabel_WallpaperFooter = new javax.swing.JLabel();
         jLabel_WallpaperHeader = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
         jLabel_Wallpaper = new javax.swing.JLabel();
+        jLabel_Wallpaper1 = new javax.swing.JLabel();
 
         jDialog_crearProducto.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -433,13 +437,17 @@ public class Entradas extends javax.swing.JFrame {
         jLabel_Wallpaper4.setOpaque(true);
         jDialog_crearProveedor.getContentPane().add(jLabel_Wallpaper4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 290));
 
+        jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Reserva:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 140, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, -1, -1));
 
         jTextField_precioVenta.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_precioVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -455,7 +463,7 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_precioVentaKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_precioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 160, 110, -1));
+        getContentPane().add(jTextField_precioVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 110, -1));
 
         jButton_cargarProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_cargarProducto.setText("+");
@@ -464,7 +472,7 @@ public class Entradas extends javax.swing.JFrame {
                 jButton_cargarProductoActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_cargarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 160, 40, -1));
+        getContentPane().add(jButton_cargarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 160, 40, -1));
 
         jButton_proveedores.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_proveedores.setText("Registrar ");
@@ -473,7 +481,7 @@ public class Entradas extends javax.swing.JFrame {
                 jButton_proveedoresActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, -1));
+        getContentPane().add(jButton_proveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 90, 120, -1));
 
         jLabel_total.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         jLabel_total.setForeground(new java.awt.Color(255, 255, 255));
@@ -492,12 +500,12 @@ public class Entradas extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Codigo:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Precio compra:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
 
         jTextField_precioCompra.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_precioCompra.addActionListener(new java.awt.event.ActionListener() {
@@ -516,12 +524,12 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_precioCompraKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_precioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 160, 110, -1));
+        getContentPane().add(jTextField_precioCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 110, -1));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Precio venta:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, -1, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, -1, -1));
 
         jTable_entradas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable_entradas.setModel(new javax.swing.table.DefaultTableModel(
@@ -561,17 +569,17 @@ public class Entradas extends javax.swing.JFrame {
                 jButton_buscarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 120, -1));
+        getContentPane().add(jButton_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 120, -1));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Proveedor:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 70, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Producto:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 70, -1, -1));
 
         jTextField_codigoProducto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_codigoProducto.addActionListener(new java.awt.event.ActionListener() {
@@ -587,16 +595,12 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_codigoProductoKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_codigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 70, -1));
+        getContentPane().add(jTextField_codigoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 70, -1));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Codigo:");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
-
-        jSeparator1.setBackground(new java.awt.Color(153, 153, 153));
-        jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 880, 10));
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         jButton_eliminar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton_eliminar.setText("Eliminar");
@@ -623,7 +627,7 @@ public class Entradas extends javax.swing.JFrame {
                 jButton_HistorialActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 90, 110, -1));
+        getContentPane().add(jButton_Historial, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 160, 110, -1));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
@@ -655,7 +659,7 @@ public class Entradas extends javax.swing.JFrame {
                 jComboBox_proveedorKeyReleased(evt);
             }
         });
-        getContentPane().add(jComboBox_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
+        getContentPane().add(jComboBox_proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 150, -1));
 
         jComboBox_Producto.setEditable(true);
         jComboBox_Producto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -678,7 +682,7 @@ public class Entradas extends javax.swing.JFrame {
                 jComboBox_ProductoKeyReleased(evt);
             }
         });
-        getContentPane().add(jComboBox_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 150, -1));
+        getContentPane().add(jComboBox_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 150, -1));
 
         jTextField_codigoProveedor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_codigoProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -694,12 +698,12 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_codigoProveedorKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_codigoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 70, -1));
+        getContentPane().add(jTextField_codigoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 70, -1));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Cantidad:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 140, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 140, -1, -1));
 
         jTextField_Cantidad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_Cantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -715,7 +719,7 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_CantidadKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 160, 80, -1));
+        getContentPane().add(jTextField_Cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 80, -1));
 
         jTextField_Reserva.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField_Reserva.addActionListener(new java.awt.event.ActionListener() {
@@ -731,7 +735,7 @@ public class Entradas extends javax.swing.JFrame {
                 jTextField_ReservaKeyTyped(evt);
             }
         });
-        getContentPane().add(jTextField_Reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 80, -1));
+        getContentPane().add(jTextField_Reserva, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 80, -1));
 
         jLabel_WallpaperFooter.setBackground(new java.awt.Color(153, 153, 153));
         jLabel_WallpaperFooter.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -748,10 +752,24 @@ public class Entradas extends javax.swing.JFrame {
         jLabel_WallpaperHeader.setOpaque(true);
         getContentPane().add(jLabel_WallpaperHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 600, 980, 80));
 
+        jSeparator2.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparator2.setForeground(new java.awt.Color(204, 204, 204));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 70, 10, 50));
+
+        jSeparator3.setBackground(new java.awt.Color(153, 153, 153));
+        jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 130, 880, 20));
+
         jLabel_Wallpaper.setBackground(new java.awt.Color(204, 204, 204));
         jLabel_Wallpaper.setForeground(new java.awt.Color(153, 153, 153));
         jLabel_Wallpaper.setOpaque(true);
         getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 680));
+
+        jLabel_Wallpaper1.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel_Wallpaper1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Wallpaper1.setOpaque(true);
+        getContentPane().add(jLabel_Wallpaper1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 680));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -761,7 +779,7 @@ public class Entradas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_precioVentaActionPerformed
 
     private void jTextField_precioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_precioCompraActionPerformed
-       
+
     }//GEN-LAST:event_jTextField_precioCompraActionPerformed
 
     private void jButton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GuardarActionPerformed
@@ -841,8 +859,6 @@ public class Entradas extends javax.swing.JFrame {
 
         jTextField_codigoProveedor.setText("");
         jTextField_codigoProveedor.setBackground(Color.white);
-
-
     }//GEN-LAST:event_jButton_GuardarActionPerformed
 
     private void jButton_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_buscarActionPerformed
@@ -889,7 +905,7 @@ public class Entradas extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El producto ya esta cargado en la tabla!");
             } else {
                 //Se carga el registro en la tabla
-                modelo_entradas.addRow(new Object[]{jTextField_codigoProducto.getText(), jComboBox_Producto.getSelectedItem(), jTextField_Cantidad.getText(), jTextField_Reserva.getText(), formato.format(pcompra), formato.format(pventa), formato.format(importe.setScale(2, RoundingMode.HALF_UP))});
+                modelo_entradas.addRow(new Object[]{jTextField_codigoProducto.getText(), jComboBox_Producto.getSelectedItem(), jTextField_Cantidad.getText(), jTextField_Reserva.getText(), formato.format(pcompra), formato.format(pventa), formato.format(importe.setScale(2, RoundingMode.HALF_UP)), jComboBox_Producto.getSelectedIndex()});
             }
 
             for (int i = 0; i < jTable_entradas.getRowCount(); i++) {
@@ -970,7 +986,7 @@ public class Entradas extends javax.swing.JFrame {
         String nombre = null;
 
         nombre = txt_nombre.getText().trim().toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim();
-       
+
         categoria = cmb_categoria.getSelectedIndex() + 1;
         medida = cmb_medida.getSelectedIndex() + 1;
         if (txt_nombre.getText() != "" && cmb_categoria.getSelectedIndex() > 0 && cmb_medida.getSelectedIndex() > 0) {
@@ -992,7 +1008,7 @@ public class Entradas extends javax.swing.JFrame {
                     pst2.setInt(5, 0);
                     pst2.setInt(6, 0);
                     pst2.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Registro exitoso!");                   
+                    JOptionPane.showMessageDialog(null, "Registro exitoso!");
 
                     ResultSet generatedKeys = pst2.getGeneratedKeys();
                     if (generatedKeys.next()) {
@@ -1004,7 +1020,6 @@ public class Entradas extends javax.swing.JFrame {
                     }
 
                     txt_nombre.setText("");
-                    cmb_categoria.setSelectedIndex(0);
                     cmb_medida.setSelectedIndex(0);
                     jDialog_crearProducto.setVisible(false);
                     jTextField_codigoProducto.setBackground(Color.white);
@@ -1143,9 +1158,9 @@ public class Entradas extends javax.swing.JFrame {
         validarBuscarProducto();
         validarCodProducto();
 
-        jTextField_precioVenta.setText("");        
+        jTextField_precioVenta.setText("");
         jTextField_precioVenta.setBackground(Color.white);
-        jTextField_precioCompra.setText("");        
+        jTextField_precioCompra.setText("");
         jTextField_precioCompra.setBackground(Color.white);
         jTextField_Cantidad.setText("");
         jTextField_Cantidad.setBackground(Color.white);
@@ -1191,7 +1206,7 @@ public class Entradas extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_codigoProveedorKeyReleased
 
     private void jTextField_codigoProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_codigoProductoKeyReleased
-       
+
         try {
             Connection cn = Conexion.conectar();
             String valor = jTextField_codigoProducto.getText();
@@ -1354,7 +1369,7 @@ public class Entradas extends javax.swing.JFrame {
     }
 
     public void masDeUnPunto(java.awt.event.KeyEvent evt, JTextField cuadrito) {
-   
+
         if (cuadrito.getText().contains(".")) {
             String n = cuadrito.getText();
             String aux;
@@ -1469,7 +1484,7 @@ public class Entradas extends javax.swing.JFrame {
     }
 
     public int validarCantidad() {
-        
+
         int validado = 0;
         if (!jTextField_Cantidad.getText().equals("")) {
             if (Float.parseFloat(jTextField_Cantidad.getText()) <= 0) {
@@ -1549,7 +1564,7 @@ public class Entradas extends javax.swing.JFrame {
 
         }
         return completo;
-    }
+    }   
 
     public void habilitarEntradas() {
         jTextField_precioCompra.setEnabled(true);
@@ -1662,6 +1677,7 @@ public class Entradas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Wallpaper;
+    private javax.swing.JLabel jLabel_Wallpaper1;
     private javax.swing.JLabel jLabel_Wallpaper3;
     private javax.swing.JLabel jLabel_Wallpaper4;
     private javax.swing.JLabel jLabel_WallpaperFooter;
@@ -1672,6 +1688,8 @@ public class Entradas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_total;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable_entradas;
     private javax.swing.JTextField jTextField_Cantidad;
     private javax.swing.JTextField jTextField_Reserva;

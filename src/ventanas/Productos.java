@@ -14,6 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
@@ -26,6 +28,8 @@ public class Productos extends javax.swing.JFrame {
 
     DefaultTableModel model = new DefaultTableModel();
     public boolean actualizar = false;
+    public String medida = "";
+    public List categorias;
 
     /**
      * Creates new form Productos
@@ -36,6 +40,8 @@ public class Productos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         actualizarTabla();
+        this.categorias = TraerCategorias();
+        LLenarComboboxCats(categorias);
 
     }
 
@@ -48,6 +54,20 @@ public class Productos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog_categorias = new javax.swing.JDialog();
+        txt_nombre1 = new javax.swing.JTextField();
+        txt_codigo1 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable_categorias = new javax.swing.JTable();
+        jButton_guardar1 = new javax.swing.JButton();
+        jButton_limpiar1 = new javax.swing.JButton();
+        jButton_eliminar1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel_WallpaperFooter1 = new javax.swing.JLabel();
+        jLabel_Wallpaper4 = new javax.swing.JLabel();
         jLabel_WallpaperHeader = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -77,6 +97,110 @@ public class Productos extends javax.swing.JFrame {
         cmb_ordenar = new javax.swing.JComboBox<>();
         jButton_Categorias = new javax.swing.JButton();
         jLabel_Wallpaper = new javax.swing.JLabel();
+
+        jDialog_categorias.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txt_nombre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_nombre1ActionPerformed(evt);
+            }
+        });
+        txt_nombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_nombre1KeyReleased(evt);
+            }
+        });
+        jDialog_categorias.getContentPane().add(txt_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 170, -1));
+
+        txt_codigo1.setEnabled(false);
+        txt_codigo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_codigo1ActionPerformed(evt);
+            }
+        });
+        jDialog_categorias.getContentPane().add(txt_codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, -1));
+
+        jTable_categorias.setBackground(new java.awt.Color(255, 255, 255));
+        jTable_categorias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTable_categorias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nombre"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable_categorias);
+
+        jDialog_categorias.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 480, 190));
+
+        jButton_guardar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_guardar1.setText("Guardar");
+        jButton_guardar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_guardar1ActionPerformed(evt);
+            }
+        });
+        jDialog_categorias.getContentPane().add(jButton_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, -1));
+
+        jButton_limpiar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_limpiar1.setText("Limpiar");
+        jButton_limpiar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_limpiar1ActionPerformed(evt);
+            }
+        });
+        jDialog_categorias.getContentPane().add(jButton_limpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 170, -1));
+
+        jButton_eliminar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_eliminar1.setText("Eliminar");
+        jButton_eliminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_eliminar1ActionPerformed(evt);
+            }
+        });
+        jDialog_categorias.getContentPane().add(jButton_eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 170, -1));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Código:");
+        jDialog_categorias.getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Nombre:");
+        jDialog_categorias.getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("DETALLE DE CATEGORIA");
+        jDialog_categorias.getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("LISTADO DE CATEGORIAS");
+        jDialog_categorias.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+
+        jLabel_WallpaperFooter1.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel_WallpaperFooter1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel_WallpaperFooter1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_WallpaperFooter1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel_WallpaperFooter1.setText("     Historial de Entradas");
+        jLabel_WallpaperFooter1.setOpaque(true);
+        jDialog_categorias.getContentPane().add(jLabel_WallpaperFooter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 60));
+
+        jLabel_Wallpaper4.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel_Wallpaper4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Wallpaper4.setOpaque(true);
+        jDialog_categorias.getContentPane().add(jLabel_Wallpaper4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 350));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -244,7 +368,7 @@ public class Productos extends javax.swing.JFrame {
         });
         getContentPane().add(cmb_medida, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 170, -1));
 
-        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Bebidas", "Comestibles", "Productos de limpieza" }));
+        cmb_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
         cmb_categoria.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cmb_categoriaItemStateChanged(evt);
@@ -330,16 +454,23 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_precioVentaActionPerformed
 
     private void jButton_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarActionPerformed
-        int categoria, medida = 0;
+        int medida, categoria = 0;
         String codigo, nombre, cantidad, precio_venta, reserva;
 
         codigo = txt_codigo.getText().trim();
         nombre = txt_nombre.getText().trim();
-        categoria = cmb_categoria.getSelectedIndex() + 1;
         medida = cmb_medida.getSelectedIndex() + 1;
         cantidad = txt_cantidad.getText().trim();
         reserva = txt_reserva.getText().trim();
         precio_venta = txt_precioVenta.getText().trim();
+
+        ArrayList tuLista = new ArrayList();
+        for (int i = 0; i < categorias.size(); i++) {
+            tuLista = (ArrayList) categorias.get(i);
+            if (tuLista.get(1) == cmb_categoria.getSelectedItem().toString()) {
+                categoria = Integer.parseInt((String) tuLista.get(0));
+            }
+        }
 
         if (validaciones() == 0) {
             if (actualizar == true) {
@@ -347,7 +478,7 @@ public class Productos extends javax.swing.JFrame {
                     Connection cn = Conexion.conectar();
                     PreparedStatement pst2 = cn.prepareStatement(
                             "UPDATE productos SET nombre=?, cantidad=?, reserva=?, precio_venta=?, id_categoria=?, medida=? WHERE id = '" + codigo + "'");
-                 
+
                     pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
                     pst2.setString(2, cantidad);
                     pst2.setString(3, reserva);
@@ -372,7 +503,7 @@ public class Productos extends javax.swing.JFrame {
                     Connection cn = Conexion.conectar();
                     PreparedStatement pst2 = cn.prepareStatement(
                             "INSERT INTO `productos`( `nombre`, `cantidad`, `reserva`, `precio_venta`, `id_categoria`, `medida` ) VALUES (?,?,?,?,?,?)");
-                   
+
                     pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
                     pst2.setString(2, cantidad);
                     pst2.setString(3, reserva);
@@ -491,8 +622,109 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_precioVentaKeyReleased
 
     private void jButton_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CategoriasActionPerformed
-        // TODO add your handling code here:
+       jDialog_categorias.setVisible(true);
+        jDialog_categorias.setResizable(false);
+        jDialog_categorias.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        jDialog_categorias.setSize(760, 370);
+        Productos entradas = new Productos();
+        jDialog_categorias.setLocationRelativeTo(entradas);
     }//GEN-LAST:event_jButton_CategoriasActionPerformed
+
+    private void txt_nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_nombre1ActionPerformed
+
+    private void txt_nombre1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre1KeyReleased
+        validaciones();
+    }//GEN-LAST:event_txt_nombre1KeyReleased
+
+    private void txt_codigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_codigo1ActionPerformed
+
+    private void jButton_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardar1ActionPerformed
+
+        String codigo, nombre;
+
+        codigo = txt_codigo.getText().trim();
+        nombre = txt_nombre.getText().trim();
+
+        if (validaciones() == 0) {
+            if (actualizar == true) {
+                try {
+                    Connection cn = Conexion.conectar();
+                    PreparedStatement pst2 = cn.prepareStatement(
+                        "UPDATE categorias SET nombre=? WHERE id = '" + codigo + "'");
+
+                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
+                    pst2.executeUpdate();
+                    cn.close();
+
+                    Limpiar();
+                    actualizar = false;
+                    Clear_Table();
+                    blanquear();
+                    JOptionPane.showMessageDialog(null, "Actualizacion exitosa!");
+
+                } catch (SQLException e) {
+                    System.err.println("Error en registrar categoria " + e);
+                    JOptionPane.showMessageDialog(null, "Error al actualizar, contacte al administrador");
+                }
+            } else {
+                try {
+                    Connection cn = Conexion.conectar();
+                    PreparedStatement pst2 = cn.prepareStatement(
+                        "INSERT INTO `categorias`( `nombre`) VALUES (?)");
+
+                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
+                    pst2.executeUpdate();
+                    cn.close();
+
+                    actualizar = false;
+                    Limpiar();
+                    Clear_Table();
+                    blanquear();
+                    JOptionPane.showMessageDialog(null, "Registro exitoso!");
+
+                } catch (SQLException e) {
+                    System.err.println("Error en registrar usuario " + e);
+                    JOptionPane.showMessageDialog(null, "Error al registrar, contacte al administrador");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+        }
+    }//GEN-LAST:event_jButton_guardar1ActionPerformed
+
+    private void jButton_limpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_limpiar1ActionPerformed
+        Limpiar();
+    }//GEN-LAST:event_jButton_limpiar1ActionPerformed
+
+    private void jButton_eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminar1ActionPerformed
+
+        if (!txt_codigo.getText().trim().equals("")) {
+            int confirmado = JOptionPane.showConfirmDialog(null, "¿Esta seguro?",
+                "Borrar", JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+            if (JOptionPane.OK_OPTION == confirmado) {
+                try {
+                    Connection cn2 = (Connection) Conexion.conectar();
+
+                    PreparedStatement pst2 = cn2.prepareStatement(
+                        "DELETE FROM categorias WHERE id = '" + txt_codigo.getText().trim() + "'");
+                    pst2.executeUpdate();
+                    cn2.close();
+                    Clear_Table();
+                    Limpiar();
+                    blanquear();
+                    actualizar = false;
+
+                } catch (SQLException e) {
+                    System.err.println("Error al borrar " + e);
+                }
+            }
+        }
+    }//GEN-LAST:event_jButton_eliminar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -536,30 +768,73 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_ordenar;
     private javax.swing.JButton jButton_Categorias;
     private javax.swing.JButton jButton_eliminar;
+    private javax.swing.JButton jButton_eliminar1;
     private javax.swing.JButton jButton_guardar;
+    private javax.swing.JButton jButton_guardar1;
     private javax.swing.JButton jButton_limpiar;
+    private javax.swing.JButton jButton_limpiar1;
+    private javax.swing.JDialog jDialog_categorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_Wallpaper;
+    private javax.swing.JLabel jLabel_Wallpaper4;
+    private javax.swing.JLabel jLabel_WallpaperFooter1;
     private javax.swing.JLabel jLabel_WallpaperHeader;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable_categorias;
     private javax.swing.JTable jTable_productos;
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_codigo;
+    private javax.swing.JTextField txt_codigo1;
     private javax.swing.JTextField txt_nombre;
+    private javax.swing.JTextField txt_nombre1;
     private javax.swing.JTextField txt_precioVenta;
     private javax.swing.JTextField txt_reserva;
     // End of variables declaration//GEN-END:variables
+
+    private void LLenarComboboxCats(List tuLista) {
+        for (int i = 0; i < tuLista.size(); i++) {
+            ArrayList<String> regs = new ArrayList<String>();
+            regs = (ArrayList<String>) tuLista.get(i);
+            cmb_categoria.addItem(regs.get(1).toString());
+        }
+    }
+
+    public List TraerCategorias() {
+        ArrayList tuLista = new ArrayList();
+        try {
+            Connection cn = Conexion.conectar();
+            PreparedStatement pst2 = cn.prepareStatement(
+                    "SELECT id, nombre FROM categorias");
+            ResultSet rs = pst2.executeQuery();
+            while (rs.next()) {
+                ArrayList reg = new ArrayList();
+                reg.add(rs.getObject(1).toString());
+                reg.add(rs.getObject(2).toString());
+                tuLista.add(reg);
+            }
+            cn.close();
+        } catch (SQLException e) {
+            System.err.println("Error en registrar detalle " + e);
+            JOptionPane.showMessageDialog(null, "Error al registrar, contacte al administrador");
+        }
+        return tuLista;
+    }
 
     public void Limpiar() {
         txt_codigo.setText("");
@@ -585,8 +860,7 @@ public class Productos extends javax.swing.JFrame {
                     String cantidad = String.valueOf(model.getValueAt(fila_point, 2));
                     txt_codigo.setText(String.valueOf(model.getValueAt(fila_point, 0)));
                     txt_nombre.setText((String) model.getValueAt(fila_point, 1));
-                    
-                    
+
                     if ((String) model.getValueAt(fila_point, 6) == "Unidad") {
                         txt_reserva.setText(reserva);
                         txt_cantidad.setText(cantidad);
@@ -601,10 +875,10 @@ public class Productos extends javax.swing.JFrame {
                             cmb_medida.setSelectedIndex(3);
                         }
                     }
-                    
+
                     txt_precioVenta.setText(String.valueOf(model.getValueAt(fila_point, 4)));
-                    cmb_categoria.setSelectedIndex((int) model.getValueAt(fila_point, 5) - 1);
-                   // cmb_medida.setSelectedIndex((int) model.getValueAt(fila_point, 6) - 1);
+                    cmb_categoria.setSelectedIndex((int) model.getValueAt(fila_point, 5));
+                    // cmb_medida.setSelectedIndex((int) model.getValueAt(fila_point, 6) - 1);
                     actualizar = true;
                 }
             }
@@ -634,15 +908,15 @@ public class Productos extends javax.swing.JFrame {
                     fila[2] = fila[2].toString().substring(0, fila[2].toString().length() - 4);
                     fila[3] = fila[3].toString().substring(0, fila[3].toString().length() - 4);
                 } else if (fila[6].equals(3)) {
-                     fila[6] = "Litros";
+                    fila[6] = "Litros";
                     fila[2] = fila[2] + " L";
                     fila[3] = fila[3] + " L";
-                }else if (fila[6].equals(4)) {
-                     fila[6] = "Kilogramos";
+                } else if (fila[6].equals(4)) {
+                    fila[6] = "Kilogramos";
                     fila[2] = fila[2] + " K";
                     fila[3] = fila[3] + " K";
                 }
-                
+
                 model.addRow(fila);
             }
             cn.close();
@@ -730,10 +1004,10 @@ public class Productos extends javax.swing.JFrame {
             Connection cn = Conexion.conectar();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-
+            System.out.println("ventanas.Productos.ordenarDatos()");
             while (rs.next()) {
-                registros[0]
-                        = registros[1] = rs.getString("nombre");
+                registros[0] = rs.getString("id");
+                registros[1] = rs.getString("nombre");
                 registros[2] = rs.getString("cantidad");
                 registros[3] = rs.getString("reserva");
                 registros[4] = rs.getString("precio_venta");
@@ -787,4 +1061,78 @@ public class Productos extends javax.swing.JFrame {
 
     }
 
+    
+    public void LimpiarCategoria() {
+        txt_codigo.setText("");
+        txt_nombre.setText("");
+        blanquear();
+        actualizar = false;
+    }
+
+    public void obtenerDatosTablaCategoria() {
+        jTable_categorias.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                int fila_point = jTable_categorias.rowAtPoint(e.getPoint());
+                if (fila_point > -1) {
+                    txt_codigo.setText(String.valueOf(model.getValueAt(fila_point, 0)));
+                    txt_nombre.setText((String) model.getValueAt(fila_point, 1));   
+                    actualizar = true;
+                }
+            }
+        });
+    }
+
+    public void actualizarTablaCategoria() {
+
+        try {
+            System.out.println("entro");
+            java.sql.Connection cn = Conexion.conectar();
+            PreparedStatement pst = cn.prepareStatement(
+                    "SELECT `id`, `nombre` FROM categorias");
+            ResultSet rs = pst.executeQuery();
+
+            model = (DefaultTableModel) jTable_categorias.getModel();
+            jScrollPane1.setViewportView(jTable_categorias);
+            System.out.println(jTable_categorias.getColumnCount());
+
+            while (rs.next()) {
+                Object[] fila = new Object[2];
+                for (int i = 0; i < 2; i++) {
+                    fila[i] = rs.getObject(i + 1);
+                }                
+                
+                model.addRow(fila);
+            }
+            cn.close();
+        } catch (SQLException e) {
+            System.err.println("Error al llenar tabla." + e);
+            JOptionPane.showMessageDialog(null, "Error al mostrar informacion, contacte al administrador");
+        }
+        obtenerDatosTabla();
+    }
+
+    private void Clear_TableCategoria() {
+        int filas = jTable_categorias.getRowCount();
+        for (int i = 0; filas > i; i++) {
+            model.removeRow(0);
+        }
+        actualizarTabla();
+    }
+
+    public int validacionesCategoria() {
+        int validacion = 0;
+        if (txt_nombre.getText().equals("")) {
+            txt_nombre.setBackground(Color.red);
+            validacion++;
+        } else {
+            txt_nombre.setBackground(Color.white);
+        }
+        return validacion;
+    }
+
+    public void blanquearCategoria() {
+        txt_nombre.setBackground(Color.white);
+    }
 }
