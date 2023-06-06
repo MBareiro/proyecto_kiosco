@@ -25,9 +25,7 @@ public class Categorias extends javax.swing.JFrame {
 
     DefaultTableModel model = new DefaultTableModel();
     public boolean actualizar = false;
-    /**
-     * Creates new form Categorias
-     */
+    
     public Categorias() {
         initComponents();
         actualizarTabla();

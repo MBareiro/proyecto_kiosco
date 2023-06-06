@@ -380,7 +380,7 @@ public class Salidas extends javax.swing.JFrame {
                 jButton_GuardarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 610, 190, 50));
+        getContentPane().add(jButton_Guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 610, 190, 60));
 
         jLabel_total.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
         jLabel_total.setForeground(new java.awt.Color(255, 255, 255));
@@ -533,7 +533,7 @@ public class Salidas extends javax.swing.JFrame {
         jLabel_Wallpaper.setBackground(new java.awt.Color(204, 204, 204));
         jLabel_Wallpaper.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel_Wallpaper.setOpaque(true);
-        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 670));
+        getContentPane().add(jLabel_Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 950, 670));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

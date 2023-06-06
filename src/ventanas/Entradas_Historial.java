@@ -331,7 +331,7 @@ public class Entradas_Historial extends javax.swing.JFrame {
             Object[] fila = new Object[4];
             String nombreProv = "";
             BigDecimal total = new BigDecimal(0);
-            
+
             if (rs.next()) {
                 for (int i = 0; i < 4; i++) {
                     if (rs.getObject(i + 1) == null) {
@@ -355,7 +355,7 @@ public class Entradas_Historial extends javax.swing.JFrame {
                 BigDecimal filaImporta = new BigDecimal(fila[3].toString());
                 total = total.add(filaImporta);
                 fila[3] = formato.format(fila[3]);
-                
+
                 modelo_historial.addRow(fila);
 
                 while (rs.next()) {
@@ -381,7 +381,7 @@ public class Entradas_Historial extends javax.swing.JFrame {
                     fila[1] = fecha2;
                     total = total.add((BigDecimal) fila[3]);
                     fila[3] = formato.format(fila[3]);
-                     
+
                     modelo_historial.addRow(fila);
                 }
             } else {
@@ -412,7 +412,7 @@ public class Entradas_Historial extends javax.swing.JFrame {
             String nombre_proveedor = modelo_historial.getValueAt(fila_point, 2).toString();
 
             try {
-                String SQL = "SELECT e.id, p.nombre, e.cantidad, e.importe FROM entradas_detalle e, productos p WHERE e.id_entrada = '" + codigo + "' AND e.id_producto = p.id";
+                String SQL = "SELECT e.id, p.nombre, p.medida, e.cantidad, e.importe FROM entradas_detalle e, productos p WHERE e.id_entrada = '" + codigo + "' AND e.id_producto = p.id";
                 Connection cn = Conexion.conectar();
                 Statement st;
                 st = cn.createStatement();
@@ -423,10 +423,27 @@ public class Entradas_Historial extends javax.swing.JFrame {
                 BigDecimal importe_total = new BigDecimal(0);
 
                 while (rs.next()) {
+                    String medida = rs.getString("medida");
+                    String cantidad = rs.getString("cantidad");
+                    String cantidadString = ""; // Variable para almacenar la cantidad convertida a String
+                    importe = BigDecimal.valueOf(Double.parseDouble(rs.getString("importe")));
                     String id = rs.getString("id");
                     String id_producto = rs.getString("p.nombre");
-                    String cantidad = rs.getString("cantidad");
-                    importe = BigDecimal.valueOf(Double.parseDouble(rs.getString("importe")));
+                    
+                    System.out.println(medida);
+                    if (medida.equals("1")) {
+                        // Encontrar la posición del punto decimal
+                        int posicionPunto = cantidad.indexOf(".");
+                        // Extraer la parte entera del número
+                        String parteEntera = cantidad.substring(0, posicionPunto);
+                        // Formatear la parte entera sin decimales
+                        DecimalFormat formato2 = new DecimalFormat("#");
+                        cantidad = formato2.format(Double.parseDouble(parteEntera)) + " u.";
+                    } else if (medida.equals("2")) {
+                        cantidad += " lt.";
+                    } else if (medida.equals("3")) {
+                        cantidad += " kg.";
+                    }
                     importe_total = importe_total.add(importe);
                     modelo_detalle.addRow(new Object[]{id, id_producto, cantidad, formato.format(importe.setScale(2, RoundingMode.HALF_UP))});
                 }

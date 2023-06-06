@@ -27,6 +27,8 @@ import javax.swing.table.DefaultTableModel;
 public class Productos extends javax.swing.JFrame {
 
     DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel modelCat = new DefaultTableModel();
+
     public boolean actualizar = false;
     public String medida = "";
     public List categorias;
@@ -55,13 +57,13 @@ public class Productos extends javax.swing.JFrame {
     private void initComponents() {
 
         jDialog_categorias = new javax.swing.JDialog();
-        txt_nombre1 = new javax.swing.JTextField();
-        txt_codigo1 = new javax.swing.JTextField();
+        txt_nombreCat = new javax.swing.JTextField();
+        txt_codigoCat = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_categorias = new javax.swing.JTable();
-        jButton_guardar1 = new javax.swing.JButton();
-        jButton_limpiar1 = new javax.swing.JButton();
-        jButton_eliminar1 = new javax.swing.JButton();
+        jButton_guardarCat = new javax.swing.JButton();
+        jButton_limpiarCat = new javax.swing.JButton();
+        jButton_eliminarCat = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -100,25 +102,25 @@ public class Productos extends javax.swing.JFrame {
 
         jDialog_categorias.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_nombre1.addActionListener(new java.awt.event.ActionListener() {
+        txt_nombreCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_nombre1ActionPerformed(evt);
+                txt_nombreCatActionPerformed(evt);
             }
         });
-        txt_nombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_nombreCat.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txt_nombre1KeyReleased(evt);
+                txt_nombreCatKeyReleased(evt);
             }
         });
-        jDialog_categorias.getContentPane().add(txt_nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 170, -1));
+        jDialog_categorias.getContentPane().add(txt_nombreCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 170, -1));
 
-        txt_codigo1.setEnabled(false);
-        txt_codigo1.addActionListener(new java.awt.event.ActionListener() {
+        txt_codigoCat.setEnabled(false);
+        txt_codigoCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_codigo1ActionPerformed(evt);
+                txt_codigoCatActionPerformed(evt);
             }
         });
-        jDialog_categorias.getContentPane().add(txt_codigo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, -1));
+        jDialog_categorias.getContentPane().add(txt_codigoCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 170, -1));
 
         jTable_categorias.setBackground(new java.awt.Color(255, 255, 255));
         jTable_categorias.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -142,32 +144,32 @@ public class Productos extends javax.swing.JFrame {
 
         jDialog_categorias.getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, 480, 190));
 
-        jButton_guardar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_guardar1.setText("Guardar");
-        jButton_guardar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_guardarCat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_guardarCat.setText("Guardar");
+        jButton_guardarCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_guardar1ActionPerformed(evt);
+                jButton_guardarCatActionPerformed(evt);
             }
         });
-        jDialog_categorias.getContentPane().add(jButton_guardar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, -1));
+        jDialog_categorias.getContentPane().add(jButton_guardarCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, -1));
 
-        jButton_limpiar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_limpiar1.setText("Limpiar");
-        jButton_limpiar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_limpiarCat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_limpiarCat.setText("Limpiar");
+        jButton_limpiarCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_limpiar1ActionPerformed(evt);
+                jButton_limpiarCatActionPerformed(evt);
             }
         });
-        jDialog_categorias.getContentPane().add(jButton_limpiar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 170, -1));
+        jDialog_categorias.getContentPane().add(jButton_limpiarCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 170, -1));
 
-        jButton_eliminar1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton_eliminar1.setText("Eliminar");
-        jButton_eliminar1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_eliminarCat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton_eliminarCat.setText("Eliminar");
+        jButton_eliminarCat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_eliminar1ActionPerformed(evt);
+                jButton_eliminarCatActionPerformed(evt);
             }
         });
-        jDialog_categorias.getContentPane().add(jButton_eliminar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 170, -1));
+        jDialog_categorias.getContentPane().add(jButton_eliminarCat, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 170, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -193,9 +195,9 @@ public class Productos extends javax.swing.JFrame {
         jLabel_WallpaperFooter1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel_WallpaperFooter1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel_WallpaperFooter1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel_WallpaperFooter1.setText("     Historial de Entradas");
+        jLabel_WallpaperFooter1.setText("     Categorias");
         jLabel_WallpaperFooter1.setOpaque(true);
-        jDialog_categorias.getContentPane().add(jLabel_WallpaperFooter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 60));
+        jDialog_categorias.getContentPane().add(jLabel_WallpaperFooter1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 60));
 
         jLabel_Wallpaper4.setBackground(new java.awt.Color(204, 204, 204));
         jLabel_Wallpaper4.setForeground(new java.awt.Color(153, 153, 153));
@@ -459,7 +461,7 @@ public class Productos extends javax.swing.JFrame {
 
         codigo = txt_codigo.getText().trim();
         nombre = txt_nombre.getText().trim();
-        medida = cmb_medida.getSelectedIndex() + 1;
+        medida = cmb_medida.getSelectedIndex();
         cantidad = txt_cantidad.getText().trim();
         reserva = txt_reserva.getText().trim();
         precio_venta = txt_precioVenta.getText().trim();
@@ -467,7 +469,7 @@ public class Productos extends javax.swing.JFrame {
         ArrayList tuLista = new ArrayList();
         for (int i = 0; i < categorias.size(); i++) {
             tuLista = (ArrayList) categorias.get(i);
-            if (tuLista.get(1) == cmb_categoria.getSelectedItem().toString()) {
+            if (tuLista.get(1).toString().equals(cmb_categoria.getSelectedItem().toString())) {
                 categoria = Integer.parseInt((String) tuLista.get(0));
             }
         }
@@ -524,7 +526,7 @@ public class Productos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Error al registrar, contacte al administrador");
                 }
             }
-
+            actualizarTabla();
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
         }
@@ -564,12 +566,15 @@ public class Productos extends javax.swing.JFrame {
                     Clear_Table();
                     Limpiar();
                     blanquear();
+                    actualizarTabla();
                     actualizar = false;
 
                 } catch (SQLException e) {
                     System.err.println("Error al borrar " + e);
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione un producto en el listado");
         }
     }//GEN-LAST:event_jButton_eliminarActionPerformed
 
@@ -622,48 +627,52 @@ public class Productos extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_precioVentaKeyReleased
 
     private void jButton_CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CategoriasActionPerformed
-       jDialog_categorias.setVisible(true);
+        jDialog_categorias.setVisible(true);
         jDialog_categorias.setResizable(false);
         jDialog_categorias.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         jDialog_categorias.setSize(760, 370);
         Productos entradas = new Productos();
+        actualizarTablaCat();
         jDialog_categorias.setLocationRelativeTo(entradas);
+
     }//GEN-LAST:event_jButton_CategoriasActionPerformed
 
-    private void txt_nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombre1ActionPerformed
+    private void txt_nombreCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_nombreCatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_nombre1ActionPerformed
+    }//GEN-LAST:event_txt_nombreCatActionPerformed
 
-    private void txt_nombre1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombre1KeyReleased
-        validaciones();
-    }//GEN-LAST:event_txt_nombre1KeyReleased
+    private void txt_nombreCatKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreCatKeyReleased
+        validacionesCategoria();
+    }//GEN-LAST:event_txt_nombreCatKeyReleased
 
-    private void txt_codigo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigo1ActionPerformed
+    private void txt_codigoCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_codigoCatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_codigo1ActionPerformed
+    }//GEN-LAST:event_txt_codigoCatActionPerformed
 
-    private void jButton_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardar1ActionPerformed
+    private void jButton_guardarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_guardarCatActionPerformed
 
         String codigo, nombre;
+        codigo = txt_codigoCat.getText().trim();
+        nombre = txt_nombreCat.getText().trim();
 
-        codigo = txt_codigo.getText().trim();
-        nombre = txt_nombre.getText().trim();
-
-        if (validaciones() == 0) {
+        if (!nombre.equals("")) {
             if (actualizar == true) {
                 try {
                     Connection cn = Conexion.conectar();
                     PreparedStatement pst2 = cn.prepareStatement(
-                        "UPDATE categorias SET nombre=? WHERE id = '" + codigo + "'");
+                            "UPDATE categorias SET nombre=? WHERE id = '" + codigo + "'");
 
-                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
+                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombreCat.getText().substring(1, txt_nombreCat.getText().length()).toLowerCase().trim());
                     pst2.executeUpdate();
                     cn.close();
 
-                    Limpiar();
                     actualizar = false;
+
+                    Limpiar();
                     Clear_Table();
+                    actualizarTabla();
                     blanquear();
+
                     JOptionPane.showMessageDialog(null, "Actualizacion exitosa!");
 
                 } catch (SQLException e) {
@@ -674,16 +683,13 @@ public class Productos extends javax.swing.JFrame {
                 try {
                     Connection cn = Conexion.conectar();
                     PreparedStatement pst2 = cn.prepareStatement(
-                        "INSERT INTO `categorias`( `nombre`) VALUES (?)");
+                            "INSERT INTO `categorias`( `nombre`) VALUES (?)");
 
-                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombre.getText().substring(1, txt_nombre.getText().length()).toLowerCase().trim());
+                    pst2.setString(1, nombre.toUpperCase().charAt(0) + txt_nombreCat.getText().substring(1, txt_nombreCat.getText().length()).toLowerCase().trim());
                     pst2.executeUpdate();
                     cn.close();
 
                     actualizar = false;
-                    Limpiar();
-                    Clear_Table();
-                    blanquear();
                     JOptionPane.showMessageDialog(null, "Registro exitoso!");
 
                 } catch (SQLException e) {
@@ -691,31 +697,51 @@ public class Productos extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Error al registrar, contacte al administrador");
                 }
             }
+
+            cmb_categoria.removeAllItems();
+            this.categorias = TraerCategorias();
+            LLenarComboboxCats(categorias);
+
+            Clear_TableCat();
+            actualizarTablaCat();
+            LimpiarCategoria();
+            blanquearCategoria();
+            blanquear();
         } else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
         }
-    }//GEN-LAST:event_jButton_guardar1ActionPerformed
+    }//GEN-LAST:event_jButton_guardarCatActionPerformed
 
-    private void jButton_limpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_limpiar1ActionPerformed
-        Limpiar();
-    }//GEN-LAST:event_jButton_limpiar1ActionPerformed
+    private void jButton_limpiarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_limpiarCatActionPerformed
+        LimpiarCategoria();
+    }//GEN-LAST:event_jButton_limpiarCatActionPerformed
 
-    private void jButton_eliminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminar1ActionPerformed
+    private void jButton_eliminarCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_eliminarCatActionPerformed
 
-        if (!txt_codigo.getText().trim().equals("")) {
+        if (!txt_codigoCat.getText().trim().equals("")) {
             int confirmado = JOptionPane.showConfirmDialog(null, "¿Esta seguro?",
-                "Borrar", JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.INFORMATION_MESSAGE);
+                    "Borrar", JOptionPane.OK_CANCEL_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
             if (JOptionPane.OK_OPTION == confirmado) {
                 try {
                     Connection cn2 = (Connection) Conexion.conectar();
 
                     PreparedStatement pst2 = cn2.prepareStatement(
-                        "DELETE FROM categorias WHERE id = '" + txt_codigo.getText().trim() + "'");
+                            "DELETE FROM categorias WHERE id = '" + txt_codigoCat.getText().trim() + "'");
                     pst2.executeUpdate();
                     cn2.close();
-                    Clear_Table();
+                    Clear_TableCat();
+                    LimpiarCategoria();
+                    blanquearCategoria();
+                    actualizarTablaCat();
+
+                    cmb_categoria.removeAllItems();
+                    this.categorias = TraerCategorias();
+                    LLenarComboboxCats(categorias);
+
                     Limpiar();
+                    Clear_Table();
+                    actualizarTabla();
                     blanquear();
                     actualizar = false;
 
@@ -724,7 +750,7 @@ public class Productos extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_jButton_eliminar1ActionPerformed
+    }//GEN-LAST:event_jButton_eliminarCatActionPerformed
 
     /**
      * @param args the command line arguments
@@ -768,11 +794,11 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmb_ordenar;
     private javax.swing.JButton jButton_Categorias;
     private javax.swing.JButton jButton_eliminar;
-    private javax.swing.JButton jButton_eliminar1;
+    private javax.swing.JButton jButton_eliminarCat;
     private javax.swing.JButton jButton_guardar;
-    private javax.swing.JButton jButton_guardar1;
+    private javax.swing.JButton jButton_guardarCat;
     private javax.swing.JButton jButton_limpiar;
-    private javax.swing.JButton jButton_limpiar1;
+    private javax.swing.JButton jButton_limpiarCat;
     private javax.swing.JDialog jDialog_categorias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -800,9 +826,9 @@ public class Productos extends javax.swing.JFrame {
     private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_codigo;
-    private javax.swing.JTextField txt_codigo1;
+    private javax.swing.JTextField txt_codigoCat;
     private javax.swing.JTextField txt_nombre;
-    private javax.swing.JTextField txt_nombre1;
+    private javax.swing.JTextField txt_nombreCat;
     private javax.swing.JTextField txt_precioVenta;
     private javax.swing.JTextField txt_reserva;
     // End of variables declaration//GEN-END:variables
@@ -877,7 +903,7 @@ public class Productos extends javax.swing.JFrame {
                     }
 
                     txt_precioVenta.setText(String.valueOf(model.getValueAt(fila_point, 4)));
-                    cmb_categoria.setSelectedIndex((int) model.getValueAt(fila_point, 5));
+                    cmb_categoria.setSelectedItem(model.getValueAt(fila_point, 5));
                     // cmb_medida.setSelectedIndex((int) model.getValueAt(fila_point, 6) - 1);
                     actualizar = true;
                 }
@@ -886,9 +912,8 @@ public class Productos extends javax.swing.JFrame {
     }
 
     public void actualizarTabla() {
-
+        categorias = TraerCategorias();
         try {
-            System.out.println("entro");
             Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
                     "SELECT `id`, `nombre`, `cantidad`, `reserva`, `precio_venta`, `id_categoria`, `medida` FROM productos");
@@ -896,27 +921,32 @@ public class Productos extends javax.swing.JFrame {
 
             model = (DefaultTableModel) jTable_productos.getModel();
             jScrollPane1.setViewportView(jTable_productos);
-            System.out.println(jTable_productos.getColumnCount());
 
             while (rs.next()) {
                 Object[] fila = new Object[7];
                 for (int i = 0; i < 7; i++) {
                     fila[i] = rs.getObject(i + 1);
                 }
-                if (fila[6].equals(2)) {
+                if (fila[6].equals(1)) {
                     fila[6] = "Unidad";
                     fila[2] = fila[2].toString().substring(0, fila[2].toString().length() - 4);
                     fila[3] = fila[3].toString().substring(0, fila[3].toString().length() - 4);
-                } else if (fila[6].equals(3)) {
+                } else if (fila[6].equals(2)) {
                     fila[6] = "Litros";
                     fila[2] = fila[2] + " L";
                     fila[3] = fila[3] + " L";
-                } else if (fila[6].equals(4)) {
+                } else if (fila[6].equals(3)) {
                     fila[6] = "Kilogramos";
                     fila[2] = fila[2] + " K";
                     fila[3] = fila[3] + " K";
                 }
 
+                for (int i = 0; i < categorias.size(); i++) {
+                    List lista = (List) categorias.get(i);
+                    if (fila[5].toString().equals(lista.get(0).toString())) {
+                        fila[5] = lista.get(1);
+                    }
+                }
                 model.addRow(fila);
             }
             cn.close();
@@ -932,7 +962,6 @@ public class Productos extends javax.swing.JFrame {
         for (int i = 0; filas > i; i++) {
             model.removeRow(0);
         }
-        actualizarTabla();
     }
 
     public int validaciones() {
@@ -1004,7 +1033,6 @@ public class Productos extends javax.swing.JFrame {
             Connection cn = Conexion.conectar();
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(SQL);
-            System.out.println("ventanas.Productos.ordenarDatos()");
             while (rs.next()) {
                 registros[0] = rs.getString("id");
                 registros[1] = rs.getString("nombre");
@@ -1034,7 +1062,6 @@ public class Productos extends javax.swing.JFrame {
         if (seleccion.equalsIgnoreCase("Codigo")) {
             SQL = "SELECT * FROM productos WHERE id like '%" + valor + "%'";
         } else if (seleccion.equalsIgnoreCase("Nombre")) {
-            System.out.println("asdasdasd");
             SQL = "SELECT * FROM productos WHERE nombre like '%" + valor + "%'";
         }
 
@@ -1061,10 +1088,9 @@ public class Productos extends javax.swing.JFrame {
 
     }
 
-    
     public void LimpiarCategoria() {
-        txt_codigo.setText("");
-        txt_nombre.setText("");
+        txt_codigoCat.setText("");
+        txt_nombreCat.setText("");
         blanquear();
         actualizar = false;
     }
@@ -1077,62 +1103,77 @@ public class Productos extends javax.swing.JFrame {
                 int fila_point = jTable_categorias.rowAtPoint(e.getPoint());
                 if (fila_point > -1) {
                     txt_codigo.setText(String.valueOf(model.getValueAt(fila_point, 0)));
-                    txt_nombre.setText((String) model.getValueAt(fila_point, 1));   
+                    txt_nombre.setText((String) model.getValueAt(fila_point, 1));
                     actualizar = true;
                 }
             }
         });
     }
 
-    public void actualizarTablaCategoria() {
+    public int validacionesCategoria() {
+        int validacion = 0;
+        if (txt_nombreCat.getText().equals("")) {
+            txt_nombreCat.setBackground(Color.red);
+            validacion++;
+        } else {
+            txt_nombreCat.setBackground(Color.white);
+        }
+        return validacion;
+    }
 
+    public void blanquearCategoria() {
+        txt_nombreCat.setBackground(Color.white);
+    }
+
+    public void actualizarTablaCat() {
+        int filas = jTable_categorias.getRowCount();
+        if (filas > 0) {
+            Clear_TableCat();
+        }
         try {
-            System.out.println("entro");
             java.sql.Connection cn = Conexion.conectar();
             PreparedStatement pst = cn.prepareStatement(
                     "SELECT `id`, `nombre` FROM categorias");
             ResultSet rs = pst.executeQuery();
 
-            model = (DefaultTableModel) jTable_categorias.getModel();
-            jScrollPane1.setViewportView(jTable_categorias);
-            System.out.println(jTable_categorias.getColumnCount());
+            modelCat = (DefaultTableModel) jTable_categorias.getModel();
+            jScrollPane2.setViewportView(jTable_categorias);
 
             while (rs.next()) {
                 Object[] fila = new Object[2];
                 for (int i = 0; i < 2; i++) {
                     fila[i] = rs.getObject(i + 1);
-                }                
-                
-                model.addRow(fila);
+                }
+
+                modelCat.addRow(fila);
             }
             cn.close();
         } catch (SQLException e) {
             System.err.println("Error al llenar tabla." + e);
             JOptionPane.showMessageDialog(null, "Error al mostrar informacion, contacte al administrador");
         }
-        obtenerDatosTabla();
+        obtenerDatosTablaCat();
     }
 
-    private void Clear_TableCategoria() {
+    public void obtenerDatosTablaCat() {
+        jTable_categorias.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                int fila_point = jTable_categorias.rowAtPoint(e.getPoint());
+                if (fila_point > -1) {
+                    txt_codigoCat.setText(String.valueOf(modelCat.getValueAt(fila_point, 0)));
+                    txt_nombreCat.setText((String) modelCat.getValueAt(fila_point, 1));
+                    actualizar = true;
+                }
+            }
+        });
+    }
+
+    private void Clear_TableCat() {
         int filas = jTable_categorias.getRowCount();
         for (int i = 0; filas > i; i++) {
-            model.removeRow(0);
+            modelCat.removeRow(0);
         }
-        actualizarTabla();
-    }
-
-    public int validacionesCategoria() {
-        int validacion = 0;
-        if (txt_nombre.getText().equals("")) {
-            txt_nombre.setBackground(Color.red);
-            validacion++;
-        } else {
-            txt_nombre.setBackground(Color.white);
-        }
-        return validacion;
-    }
-
-    public void blanquearCategoria() {
-        txt_nombre.setBackground(Color.white);
     }
 }

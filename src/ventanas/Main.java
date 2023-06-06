@@ -150,6 +150,7 @@ public class Main extends javax.swing.JFrame {
     private void jButton_ventasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ventasActionPerformed
         Salidas salidas = new Salidas();
         salidas.setVisible(true);
+        salidas.setSize(968, 715);
     }//GEN-LAST:event_jButton_ventasActionPerformed
 
     private void jButton_productosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_productosActionPerformed
